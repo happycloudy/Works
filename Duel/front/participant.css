@@ -1,0 +1,16 @@
+.form-text{
+    font-size: 0.5rem;
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+
+.cardpattern{
+    border-radius: 10px;
+    background: rgb(48,48,196);
+    background: linear-gradient(13deg, rgba(48,48,196,1) 3%, rgba(0,212,255,1) 100%);
+}
+.cardpattern:hover{
+    transform: scale(1.01,1.01);
+    transition: 0.2s;
+}
