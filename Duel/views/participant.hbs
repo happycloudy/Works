@@ -1,0 +1,109 @@
+<link rel="stylesheet" href="participant.css">
+
+
+
+<div class="container" style="height: 100vh">
+    <hr>
+    <div class="row">
+            <div class="col-sm">
+                <form action="/searchpart" method="POST"> 
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Поиск Студента:</label>
+                    <input name="name"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Писать в формате: 'Имя Фамилия'">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Поиск</button>
+                </form>
+            </div>
+        </div>
+    {{#if isAdmin}}
+    <ul class="list-group">
+        {{#each Duelists}}
+            <form action="/changescore" method="post">
+                <li class="list-group-item mt-3 active"  >
+                    <div class="d-flex justify-content-center">
+                        <div >
+                            <h4>
+                                {{ Firstname}} 
+                                {{ Secondname}}
+                                {{ Thirdname}}
+                                {{ Group}}
+                            </h4>
+                            
+                            {{#if Score}}
+                                Количество очков: {{Score}}
+                            {{/if}}
+                            <div style="color: #2ecc71"> Участвует в дуэли с {{Opponent}}</div>
+                            <input type="hidden" value="{{_id}}" name="id">
+                        </div>
+                    </div>
+                    
+                    
+ 
+                    <div class="row mt-3">
+                        <div class="col-sm-4">
+                            Введите R.нов.1 :
+                        <input type="text" name="Rnew1">
+                        </div>
+                        <div class="col-sm-4">
+                            Введите R.нов.2 :
+                            <input type="text" name="Rnew2">
+                        </div>
+                        <div class="col-sm-4">
+                            Введите R.стар.1 :
+                            <input type="text" name="Rold1">
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex justify-content-center mt-2">
+                        <input name="" id="" class="btn btn-primary" type="submit" value="Установить"> 
+                    </div>   
+                </li>
+            </form>
+        {{/each}}
+    </ul>
+{{else}}
+
+
+
+    <div class="row">
+        {{#each Duelists}}
+            <div class="col-sm-4 mt-4"  >
+                <div class="cardpattern">
+                    <hr>
+                    <div class="studentname d-flex justify-content-center">
+                        <h4 style="text-align: center">
+                            {{ Firstname}} 
+                            {{ Secondname}}
+                            {{ Thirdname}} 
+                            <br>
+                            {{ Group}}
+                        </h4>
+                    </div>
+                        <hr>
+                    <div class="opponent d-flex justify-content-center">
+                        Участвует в дуэли с <br> 
+                        <span style="color: #D6E3F8"> 
+                            {{Opponent}}
+                        </span>
+                    </div>
+                        <hr>
+
+                    {{#if Score}}
+                        <div class="score d-flex justify-content-center ">
+                        Текущий Дуэльный рейтинг <span style="opacity: 0.5;">{{Score}}</span>
+                        </div>
+                    {{else}}
+                        <div class="score d-flex justify-content-center">
+                            Рейтинг неизвестен
+                        </div>
+                    {{/if}}
+                    <hr>
+                </div>
+
+            </div>
+        {{/each}}
+        </div>
+    </div>
+
+{{/if}}
+</div>

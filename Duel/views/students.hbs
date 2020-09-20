@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="students.css">
+
+
+{{#if Duelists.length}}
+    <div class="container ">
+
+
+        {{#if isRequested}}
+            <form action="/acceptRequest" method="post" style="height: 15vh">
+                <h2>Вам бросил вызов <div class="text-primary">{{Opponent}}</div></h2>
+                <input type="submit" class="btn btn-primary" value="Подтвердить противника">
+            </form>
+        {{/if}}  
+
+        <hr>
+        <div class="row">
+            <div class="col-sm">
+                <form action="/searchstud" method="POST"> 
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Поиск Студента:</label>
+                    <input name="name"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Писать в формате: 'Имя Фамилия'">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Поиск</button>
+                </form>
+            </div>
+        </div>
+
+        <hr><hr>
+        <div class="row">
+        {{#each Duelists}}
+            <div class="col-sm col-md-4 mt-3">
+                <form action="/offerToDuel" method="POST" >
+                    <div class="card bg-primary" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title" style="text-align: center;">
+                            {{ Firstname}} 
+                            {{ Secondname}}
+                            {{ Thirdname}}
+                            {{ Group}} 
+                            <input type="hidden" value="{{_id}}" name="id">
+                            </h5>
+                            {{#if isDueled}}
+                                <p class="card-text">Уже участвует в дуэли с <br>
+                                    <span style="color: #D6E3F8"> 
+                                        {{Opponent}}
+                                    </span>
+                                </p>
+                            {{else}}
+                                <div class=" card-link d-flex justify-content-center">
+                                <input type="submit" value="Вызвать на дуэль" class="btn btn-light">
+                                </div>
+                            {{/if}}
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        
+        {{/each}}
+        </div>
+    </div>
+
+    {{else}}
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    
+                    <div class="card bg-primary" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                            <p> Нет участников</p>
+                            </h5>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/if}}

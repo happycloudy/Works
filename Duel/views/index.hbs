@@ -1,0 +1,17 @@
+<h2>
+    <div class="container" style="display:flex; align-items: center; justify-content: center; text-align: center;">
+        <div>
+            Добро пожаловать на страницу конкурса РХТУ : "Дуэль",<br>
+            {{#if User.length}}
+                {{#each User}}
+                        {{ Firstname}} 
+                        {{ Thirdname}}
+                {{/each}}
+            {{else}}
+                Студент
+            {{/if}}
+        </div>
+    </div>
+</h2>
+
+
